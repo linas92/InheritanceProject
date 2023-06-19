@@ -57,6 +57,7 @@ namespace InheritanceProject
                     }
                 }
             }
+
             else if (rentalDecision.ToLower() == "purchase")
             {
                 foreach (var purchase in purchasables)
@@ -75,87 +76,11 @@ namespace InheritanceProject
 
             else
             {
-                Console.WriteLine("Something wrong. Please enter the correct phrase to countinue");
+                Console.WriteLine("Something wrong. We have to say goodbye");
             }
             Console.WriteLine("we dooone :))) ");
 
             Console.ReadLine();
-        }
-    }
-
-    public interface IInventoryItem
-    {
-        string ProductName { get; set; }
-        int QuantityInStock { get; set; }
-    }
-
-    public interface IRentable: IInventoryItem
-    {
-        void Rent();
-        void ReturnRental();
-    }
-    public interface IPurchasable: IInventoryItem
-    {
-        void Purchase();
-    }
-
-    public class InventoryItemModel: IInventoryItem
-    {
-        public string ProductName { get; set; }
-        public int QuantityInStock { get; set; }
-    }
-
-    public class VehicleModel: InventoryItemModel, IPurchasable, IRentable
-    {
-        public decimal DealerFee { get; set; }
-
-        public void Purchase()
-        {
-            QuantityInStock -= 1;
-            Console.WriteLine("This vehicle has been purchased");
-        }
-
-        public void Rent()
-        {
-            QuantityInStock -= 1;
-            Console.WriteLine("This vehicle has been rented");
-        }
-
-        public void ReturnRental()
-        {
-            QuantityInStock += 1;
-            Console.WriteLine("This vehicle has been returned");
-        }
-    }
-
-    public class BookModel: InventoryItemModel, IPurchasable
-    {
-        public int NumberOfPages { get; set; }
-
-        public void Purchase()
-        {
-            QuantityInStock -= 1;
-            Console.WriteLine("This book has been purchased");
-        }
-    }
-
-    public class ExcavatorModel: InventoryItemModel, IRentable
-    {
-        public void Dig()
-        {
-            Console.WriteLine("I DIG!");
-        }
-
-        public void Rent()
-        {
-            QuantityInStock -= 1;
-            Console.WriteLine("This Excavator has been rented");
-        }
-
-        public void ReturnRental()
-        {
-            QuantityInStock += 1;
-            Console.WriteLine("This Excavator has been returned");
         }
     }
 }
