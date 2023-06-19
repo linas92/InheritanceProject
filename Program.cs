@@ -18,9 +18,20 @@ namespace InheritanceProject
         }
     }
 
+    public interface IRentable
+    {
+        void Rent();
+        void ReturnRental();
+    }
+    public interface IPurchasable
+    {
+        void Purchase();
+    }
+
     public class InventoryItemModel
     {
         public string ProductName { get; set; }
+        public int QuantityInStock { get; set; }
     }
 
     public class VehicleModel: InventoryItemModel
@@ -33,11 +44,22 @@ namespace InheritanceProject
         public int NumberOfPages { get; set; }
     }
 
-    public class Excavator: InventoryItemModel
+    public class Excavator: InventoryItemModel, IRentable
     {
         public void Dig()
         {
             Console.WriteLine("I DIG!");
+        }
+
+        public void Rent()
+        {
+            QuantityInStock -= 1;
+            Console.WriteLine("This Excavator has been rented");
+        }
+
+        public void ReturnRental()
+        {
+            throw new NotImplementedException();
         }
     }
 }
