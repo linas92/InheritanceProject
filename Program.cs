@@ -39,9 +39,15 @@ namespace InheritanceProject
         public decimal DealerFee { get; set; }
     }
 
-    public class BookModel: InventoryItemModel
+    public class BookModel: InventoryItemModel, IPurchasable
     {
         public int NumberOfPages { get; set; }
+
+        public void Purchase()
+        {
+            QuantityInStock -= 1;
+            Console.WriteLine("This book has been purchased");
+        }
     }
 
     public class Excavator: InventoryItemModel, IRentable
@@ -59,7 +65,8 @@ namespace InheritanceProject
 
         public void ReturnRental()
         {
-            throw new NotImplementedException();
+            QuantityInStock += 1;
+            Console.WriteLine("This Excavator has been returned");
         }
     }
 }
