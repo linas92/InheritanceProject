@@ -30,6 +30,27 @@ namespace InheritanceProject
             purchasables.Add(vehicle);
 
 
+            Console.Write("Do you want to rent or purchase? (rent, purchase)");
+            string rentalDecision = Console.ReadLine();
+
+            if (rentalDecision.ToLower() == "rent")
+            {
+                foreach (var rent in rentables)
+                {
+                    Console.WriteLine($"You can rent: \n{rent}");
+                }
+            }
+            else if (rentalDecision.ToLower() == "purchase")
+            {
+                foreach (var purchase in purchasables)
+                {
+                    Console.WriteLine($"You can buy: \n{purchase}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Something wrong. Please enter the correct phrase to countinue");
+            }
 
             Console.ReadLine();
         }
