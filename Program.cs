@@ -37,36 +37,69 @@ namespace InheritanceProject
             {
                 foreach (var rent in rentables)
                 {
-                    Console.WriteLine($"You can rent: \n{rent}");
+                    Console.WriteLine($"You can rent: \n{rent.ProductName}");
+                    Console.Write("Do you want to rent this item (yes/no): ");
+
+                    string wantToRent = Console.ReadLine();
+
+                    if (wantToRent.ToLower() == "yes")
+                    {
+                        rent.Rent();
+                    }
+
+                    Console.WriteLine("Do you want to return this item (yes/no): ");
+
+                    string wantToReturn = Console.ReadLine();
+
+                    if (wantToReturn.ToLower() == "yes")
+                    {
+                        rent.ReturnRental();
+                    }
                 }
             }
             else if (rentalDecision.ToLower() == "purchase")
             {
                 foreach (var purchase in purchasables)
                 {
-                    Console.WriteLine($"You can buy: \n{purchase}");
+                    Console.WriteLine($"You can buy: \n{purchase.ProductName}");
+                    Console.Write("Do you want to purchase this item (yes/no): ");
+
+                    string wantToPurchase = Console.ReadLine();
+
+                    if (wantToPurchase.ToLower() == "yes")
+                    {
+                        purchase.Purchase();
+                    }
                 }
             }
+
             else
             {
                 Console.WriteLine("Something wrong. Please enter the correct phrase to countinue");
             }
+            Console.WriteLine("we dooone :))) ");
 
             Console.ReadLine();
         }
     }
 
-    public interface IRentable
+    public interface IInventoryItem
+    {
+        string ProductName { get; set; }
+        int QuantityInStock { get; set; }
+    }
+
+    public interface IRentable: IInventoryItem
     {
         void Rent();
         void ReturnRental();
     }
-    public interface IPurchasable
+    public interface IPurchasable: IInventoryItem
     {
         void Purchase();
     }
 
-    public class InventoryItemModel
+    public class InventoryItemModel: IInventoryItem
     {
         public string ProductName { get; set; }
         public int QuantityInStock { get; set; }
